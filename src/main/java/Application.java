@@ -1,13 +1,11 @@
 import pathfinder.ControlPanel;
 import pathfinder.GridPanel;
-import pathfinder.model.GeneratorType;
 import pathfinder.service.maze.MazeGenerator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.lang.classfile.Signature;
 
 public class Application extends JFrame {
 

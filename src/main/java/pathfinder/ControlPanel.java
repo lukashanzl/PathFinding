@@ -3,13 +3,10 @@ package pathfinder;
 import pathfinder.model.GeneratorType;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.function.Consumer;
 
 public class ControlPanel extends JPanel {
-
-    private Grid grid;
 
     public ControlPanel(Consumer<GeneratorType> onGenerate) {   // <-- no Grid, no GridPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
