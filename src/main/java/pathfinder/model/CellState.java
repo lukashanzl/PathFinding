@@ -2,20 +2,25 @@ package pathfinder.model;
 
 import lombok.Getter;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
 public enum CellState {
-    Empty(0),
-    Path(1),
-    Wall(2);
+    Empty(0, Color.white),
+    Path(1, Constants.COLOR_PATH),
+    Wall(2, Constants.COLOR_WALL),
+    Start(3, Color.blue),
+    End(4, Color.magenta);
 
     private final int value;
+    private final Color color;
     private static final Map<Integer, CellState> map = new HashMap<>();
 
-    CellState(int value) {
+    CellState(int value, Color color) {
         this.value = value;
+        this.color = color;
     }
 
     static {

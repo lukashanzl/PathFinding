@@ -2,6 +2,8 @@ package pathfinder;
 
 import lombok.Getter;
 import lombok.Setter;
+import pathfinder.model.Cell;
+import pathfinder.model.CellState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,31 +12,32 @@ import java.awt.*;
 @Setter
 public class GridPanel extends JPanel {
 
-    private Grid grid;
-    private int height;
-    private int width;
+    private static final int CELL_PIXEL = 20;
 
-    public GridPanel(int height, int width, int rows, int cols) {
+    private Grid grid;
+
+    public GridPanel(int rows, int cols) {
         this.grid = new Grid(rows, cols);
-        this.height = height;
-        this.width = width;
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(cols * CELL_PIXEL, rows * CELL_PIXEL));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int k;
-
-        int htOfRow = height / grid.getRows();
-        for(k=0; k<grid.getRows(); k++){
-            g.drawLine(0, k * htOfRow, width, k * htOfRow);
+        Cell[][] cells = grid.getCells();
+        for (int row = 0; row < grid.getRows(); row++) {
+            for (int col = 0; col < grid.getCols(); col++) {
+                Cell cell = cells[row][col];
+                g.setColor(cell.getState().getColor());
+                g.fillRect(col * CELL_PIXEL, row * CELL_PIXEL, CELL_PIXEL, CELL_PIXEL);
+            }
         }
 
-        int wdOfRow = width / grid.getCols();
-        for(k=0; k<grid.getCols(); k++){
-            g.drawLine(k * wdOfRow, 0, k * wdOfRow, height);
-        }
+        // set grid over it
+        g.setColor(new Color(200, 200, 200));
+        int w = grid.getCols() * CELL_PIXEL, h = grid.getRows() * CELL_PIXEL;
+        for (int row = 0; row <= grid.getRows(); row++) g.drawLine(0, row * CELL_PIXEL, w, row * CELL_PIXEL);
+        for (int col = 0; col <= grid.getCols(); col++) g.drawLine(col * CELL_PIXEL, 0, col * CELL_PIXEL, h);
     }
 }
