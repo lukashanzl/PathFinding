@@ -24,7 +24,7 @@ public class Application extends JFrame {
         pack();
 
         MazeGenerator mazeGenerator = new MazeGenerator();
-        mazeGenerator.generate(gPanel, GeneratorType.DEPTH_FIRST);
+        mazeGenerator.generate(gPanel.getGrid(), GeneratorType.DEPTH_FIRST);
         gPanel.repaint();
 
         setVisible(true);
