@@ -3,7 +3,6 @@ package pathfinder;
 import lombok.Getter;
 import lombok.Setter;
 import pathfinder.model.Cell;
-import pathfinder.model.CellState;
 
 import javax.swing.*;
 import java.awt.*;

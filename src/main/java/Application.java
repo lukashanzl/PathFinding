@@ -61,7 +61,7 @@ public class Application extends JFrame {
 
         System.out.printf("Currently checking cell: Row=%d, Col=%d %n", cell.getRow(), cell.getCol());
 
-        ArrayList<Cell> neighbors = new ArrayList<Cell>();
+        ArrayList<Cell> neighbors = new ArrayList<>();
 
         Cell neighbor;
         if(cell.getRow()+2 < ROWS){
