@@ -1,10 +1,13 @@
+import pathfinder.ControlPanel;
 import pathfinder.GridPanel;
 import pathfinder.model.GeneratorType;
 import pathfinder.service.maze.MazeGenerator;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.classfile.Signature;
 
 public class Application extends JFrame {
 
@@ -18,14 +21,17 @@ public class Application extends JFrame {
     public Application() {
         super("PathFinder - Grid Visualization");
 
-        GridPanel gPanel = new GridPanel(ROWS, COLS);
+        GridPanel mazePanel = new GridPanel(ROWS, COLS);
+        MazeGenerator generator = new MazeGenerator();
 
-        add(gPanel);
+        ControlPanel controlPanel = new ControlPanel(type -> {
+            generator.generate(mazePanel.getGrid(), type);   // mutate the model
+            mazePanel.repaint();                              // refresh the view
+        });
+
+        add(mazePanel, BorderLayout.CENTER);
+        add(controlPanel, BorderLayout.WEST);
         pack();
-
-        MazeGenerator mazeGenerator = new MazeGenerator();
-        mazeGenerator.generate(gPanel.getGrid(), GeneratorType.DEPTH_FIRST);
-        gPanel.repaint();
 
         setVisible(true);
 
