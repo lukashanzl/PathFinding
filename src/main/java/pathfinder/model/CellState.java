@@ -1,8 +1,11 @@
 package pathfinder.model;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public enum CellState {
     Empty(0),
     Path(1),
@@ -22,10 +25,6 @@ public enum CellState {
     }
 
     public static CellState valueOf(int value) {
-        return (CellState) map.get(value);
-    }
-
-    public int getValue() {
-        return value;
+        return map.get(value);
     }
 }

@@ -1,9 +1,6 @@
-import pathfinder.Grid;
 import pathfinder.GridPanel;
-import pathfinder.model.CellState;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
