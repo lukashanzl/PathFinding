@@ -2,13 +2,11 @@ package pathfinder.service.pathfinder.types;
 
 import pathfinder.Grid;
 import pathfinder.model.AStarCell;
-import pathfinder.model.Cell;
 import pathfinder.model.CellState;
 import pathfinder.service.pathfinder.interfaces.PathfinderStrategy;
 import pathfinder.service.utils.ArrayListUtils;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class AStar implements PathfinderStrategy {
 

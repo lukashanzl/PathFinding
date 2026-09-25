@@ -1,7 +1,6 @@
 package pathfinder.service.pathfinder;
 
 import pathfinder.Grid;
-import pathfinder.model.GeneratorType;
 import pathfinder.model.PathfinderType;
 import pathfinder.service.pathfinder.interfaces.PathfinderStrategy;
 import pathfinder.service.pathfinder.types.AStar;
@@ -11,8 +10,6 @@ import java.util.Map;
 
 public class Pathfinder {
     private final Map<PathfinderType, PathfinderStrategy> strategies = new EnumMap<>(PathfinderType.class);
-
-    private AStar aStar;
 
     public Pathfinder(){
         strategies.put(PathfinderType.A_STAR, new AStar());
