@@ -1,6 +1,7 @@
 package pathfinder;
 
 import pathfinder.model.GeneratorType;
+import pathfinder.model.PathfinderType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,8 @@ import java.util.function.Consumer;
 
 public class ControlPanel extends JPanel {
 
-    public ControlPanel(Consumer<GeneratorType> onGenerate) {   // <-- no Grid, no GridPanel
+    public ControlPanel(Consumer<GeneratorType> onGenerate,
+                        Consumer<PathfinderType> onSolve) {   // <-- no Grid, no GridPanel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JLabel mazeHeader = new JLabel("Maze Generation");
@@ -20,10 +22,13 @@ public class ControlPanel extends JPanel {
         add(depthFirst);
         // add more generator buttons later — they all call onGenerate with their own type
 
-
         JLabel pathfinderHeader = new JLabel("Pathfinders");
         pathfinderHeader.setFont(new Font("Serif", Font.BOLD, 18));
         add(pathfinderHeader);
+
+        JButton aStarPath = new JButton("A* Pathfinder");
+        aStarPath.addActionListener(e -> onSolve.accept(PathfinderType.A_STAR));
+        add(aStarPath);
     }
 
     @Override
