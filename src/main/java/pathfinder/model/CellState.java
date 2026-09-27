@@ -12,7 +12,8 @@ public enum CellState {
     Path(1, Constants.COLOR_PATH),
     Wall(2, Constants.COLOR_WALL),
     Start(3, Color.blue),
-    End(4, Color.magenta);
+    End(4, Color.magenta),
+    Visited(5, Color.yellow);
 
     private final int value;
     private final Color color;

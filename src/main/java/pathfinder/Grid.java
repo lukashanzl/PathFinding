@@ -47,4 +47,15 @@ public class Grid {
             }
         }
     }
+
+    /**
+     * Reset the visited state of all cells.
+     */
+    public void resetVisited(){
+        for (int i = 0; i < this.getCells().length; i++) {
+            for (int j = 0; j < this.getCells()[i].length; j++) {
+                this.getCells()[i][j].setVisited(false);
+            }
+        }
+    }
 }

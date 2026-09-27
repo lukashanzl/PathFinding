@@ -1,5 +1,6 @@
 import pathfinder.ControlPanel;
 import pathfinder.GridPanel;
+import pathfinder.model.SearchStatus;
 import pathfinder.service.maze.MazeGenerator;
 import pathfinder.service.pathfinder.Pathfinder;
 
@@ -10,8 +11,8 @@ import java.awt.event.WindowEvent;
 
 public class Application extends JFrame {
 
-    private final int ROWS = 10;
-    private final int COLS = 10;
+    private final int ROWS = 30;
+    private final int COLS = 30;
 
     static void main(String[] args) {
         SwingUtilities.invokeLater(Application::new);
@@ -46,8 +47,20 @@ public class Application extends JFrame {
                     mazePanel.repaint();
                     },
                 pathfinderType -> {
-                    pathfinder.solve(mazePanel.getGrid(), pathfinderType);
-                    mazePanel.repaint();
+                    pathfinder.init(mazePanel.getGrid(), pathfinderType);
+                    Timer timer = new Timer(30, null);
+                    timer.addActionListener(e -> {
+                        SearchStatus status = pathfinder.step(pathfinderType);
+                        mazePanel.repaint();
+                        if (status != SearchStatus.RUNNING){
+                            timer.stop();
+                            if (status == SearchStatus.FOUND){
+                                pathfinder.reconstructPath(pathfinderType);
+                                mazePanel.repaint();
+                            }
+                        }
+                    });
+                    timer.start();
                 }
         );
     }

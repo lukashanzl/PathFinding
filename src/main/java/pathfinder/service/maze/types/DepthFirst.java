@@ -16,6 +16,7 @@ public class DepthFirst implements MazeStrategy {
     @Override
     public void generate(Grid grid){
         grid.fill(CellState.Wall);
+        grid.resetVisited();
 
         checkNeighbors(grid, grid.getCells()[0][0]);
 
